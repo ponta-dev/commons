@@ -4,3 +4,46 @@
  * This is a general purpose Gradle build.
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.5/samples
  */
+plugins {
+	id "java"
+	id "jacoco"
+	id "org.springframework.boot" version "${version_spring_boot}"
+	id "io.spring.dependency-management" version "${version_spring_dependency}"
+}
+
+group = "com.github.pontadev"
+version = "1.0.0"
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+sourceCompatibility = "21"
+targetCompatibility = "21"
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//web
+	implementation  "org.springframework.boot:spring-boot-starter-web:${version_spring_boot}"
+	
+	
+	
+	//test
+	testImplementation  "org.springframework.boot:spring-boot-starter-test:${version_spring_boot}"
+	testImplementation  "org.junit.jupiter:junit-jupiter-api:${version_junit}"
+	testImplementation  "org.junit.jupiter:junit-jupiter-params:${version_junit}"
+	testRuntimeOnly     "org.junit.jupiter:junit-jupiter-engine:${version_junit}"
+}
+
+test {
+	useJUnitPlatform {
+		includeEngines "junit-jupiter"
+	}
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	dependsOn test
+}
