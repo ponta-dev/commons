@@ -34,6 +34,7 @@ dependencies {
 	testImplementation  "org.springframework.boot:spring-boot-starter-test:${version_spring_boot}"
 	testImplementation  "org.junit.jupiter:junit-jupiter-api:${version_junit}"
 	testImplementation  "org.junit.jupiter:junit-jupiter-params:${version_junit}"
+	testImplementation  "org.junit.platform:junit-platform-launcher:${version_junit_platform}"
 	testRuntimeOnly     "org.junit.jupiter:junit-jupiter-engine:${version_junit}"
 }
 
