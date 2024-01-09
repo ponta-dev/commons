@@ -7,7 +7,19 @@ SpringBoot用のアノテーションとSpring本来のアノテーションと�
 
 ## 全体
 
-* @SpringBootApplication
+* @SpringBootApplication  
+@SpringBootConfiguration、@EnableAutoConfiguration、@ComponentScanの混合アノテーション  
+@EnableAutoConfigurationはJarの依存関係によってSpringBootの構成を自動で決める（webがあればWebアプリ、等）  
+@ComponentScanは対象のクラスが所属するパッケージでコンポーネントスキャンを有効にする  
+@SpringBootConfigurationはコンテキスト内の追加のBean登録などを有効にする  
+
+``` java
+@SpringBootApplication
+     ↓のように分解もできる
+@SpringBootConfiguration(proxyBeanMethods = false)
+@EnableAutoConfiguration
+@Import({ SomeConfiguration.class, AnotherConfiguration.class }) //importなのでコンポーネントスキャンはされない
+```
 
 ## Web
 
@@ -18,5 +30,4 @@ REST形式のWebリクエスト受信部分のControllerのマークアノテー
 * @RequestMapping  
 ルーティング情報を設定するアノテーション  
 /homeとかのパスを定義する  
-関数単位に設定  
-
+クラス、関数単位に設定  
